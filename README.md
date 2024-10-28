@@ -2,6 +2,6 @@
 
 _DenoiseRep_ is a computation-free, label-optional and model-free method to incrementally improve discriminative tasks. 
 
-# Updates
+## Updates
 
 - 10/2024: init project, code coming soon.
