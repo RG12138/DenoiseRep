@@ -226,7 +226,7 @@ def test(epoch, net):
     # Save checkpoint.
     acc = 100.*correct/total
     if acc > best_acc:
-        net = fuse_parameters(net) # never train after call fuse_parameters
+        net = fuse_parameters(net)
         print('Saving..')
         state = {"model": net.state_dict(),
               "optimizer": optimizer.state_dict(),
