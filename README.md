@@ -14,18 +14,18 @@ NeurIPS 2024 (Oral)
 
 ## Updates
 
-- 2024.12.27: code released. thanks for Zhengrui Xu's contribution, who is the code developer.
+- 2024.12.27: code released. thanks to Zhengrui Xu's contribution, who is the code developer.
 - 2024.10.28: init project, code coming soon.
 
 ## TODO
 
 - [x] release DenoiseRep basic code.
-- [x] implement DenoiseLinear.
-- [] implement DenoiseConv2d.
+- [x] implement `DenoiseLinear`.
+- [ ] implement `DenoiseConv2d`.
 - [x] a tutorial of cifar10.
 - [x] implement Person-ReID experiments.
-- [] implement Classification experiments
-- [] implement Detection / Segmentation experiments
+- [ ] implement Classification (ImageNet) experiments.
+- [ ] implement Detection / Segmentation experiments.
 
 ## Pipeline
 
@@ -50,7 +50,7 @@ pip show denoiserep
 
 ## 3 Steps to apply DenoiseRep to your model
 
-load your model trained with original pipeline, and convert to denoiserep.
+load your model trained with the original pipeline, and convert to denoiserep.
 ![](fig/tutorial-load-convert.jpg)
 
 train your model by adding ploss.
