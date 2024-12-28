@@ -55,8 +55,8 @@ data
 Please download the pre-trained models and put them into your custom file folder.
 | Model         | Download |
 | :------:      | :------: |
-| ViT-S/16      | [link](https://drive.google.com/file/d/1ODxA7mJv17UfzwfXtY9dTWNsYghoNWGB/view?usp=sharing) |
-| ViT-B/16+ICS  | [link](https://drive.google.com/file/d/1ZFMCBZ-lNFMeBD5K8PtJYJfYEk5D9isd/view?usp=sharing) |
+| ViT-S/16      | [link (coming soom)]() |
+| ViT-B/16+ICS  | [link (coming soom)]() |
 
 ## Training
 
