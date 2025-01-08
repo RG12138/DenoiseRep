@@ -42,7 +42,7 @@ parser.add_argument('--net', default='vit')
 parser.add_argument('--dp', action='store_true', help='use data parallel')
 parser.add_argument('--bs', default='512')
 parser.add_argument('--size', default="32")
-parser.add_argument('--n_epochs', type=int, default='400')
+parser.add_argument('--n_epochs', type=int, default='300')
 parser.add_argument('--patch', default='4', type=int, help="patch for ViT")
 parser.add_argument('--dimhead', default="512", type=int)
 parser.add_argument('--convkernel', default='8', type=int, help="parameter for convmixer")
@@ -63,6 +63,8 @@ imsize = int(args.size)
 
 use_amp = not args.noamp
 aug = args.noaug
+
+eval_epoch = args.eval_epochs
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 best_acc = 0  # best test accuracy
@@ -105,6 +107,8 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 # Model factory..
 print('==> Building model..')
+
+
 if args.net=="vit_small":
     from models.vit_small import ViT
     net = ViT(
@@ -132,7 +136,6 @@ elif args.net=="vit":
     emb_dropout = 0.1
 )
 
-
 # For Multi-GPU
 if 'cuda' in device:
     print(device)
@@ -149,6 +152,7 @@ if args.resume:
     net.load_state_dict(checkpoint['net'])
     best_acc = checkpoint['acc']
     start_epoch = checkpoint['epoch']
+
 
 # Loss is CE
 criterion = nn.CrossEntropyLoss()
@@ -190,7 +194,7 @@ def train(epoch):
     return train_loss/(batch_idx+1)
 
 ##### Validation
-def test(epoch):
+def test(epoch, net):
     global best_acc
     net.eval()
     test_loss = 0
@@ -200,7 +204,7 @@ def test(epoch):
         for batch_idx, (inputs, targets) in enumerate(testloader):
             inputs, targets = inputs.to(device), targets.to(device)
             outputs = net(inputs)
-            loss = criterion(outputs, targets)
+            loss = criterion(outputs, targets) 
 
             test_loss += loss.item()
             _, predicted = outputs.max(1)
@@ -235,22 +239,21 @@ list_acc = []
 if usewandb:
     wandb.watch(net)
     
-net.cuda()
 for epoch in range(start_epoch, args.n_epochs):
     start = time.time()
     trainloss = train(epoch)
-    val_loss, acc = test(epoch)
     
     scheduler.step(epoch-1) # step cosine scheduling
     
-    list_loss.append(val_loss)
-    list_acc.append(acc)
     
     # Log training..
     if usewandb:
-        wandb.log({'epoch': epoch, 'train_loss': trainloss, 'val_loss': val_loss, "val_acc": acc, "lr": optimizer.param_groups[0]["lr"],
-        "epoch_time": time.time()-start})
+        wandb.log({'epoch': epoch, 'train_loss': trainloss, "epoch_time": time.time()-start})
 
+    if ((epoch + 1) % eval_epoch == 0):
+        val_loss, acc = test(epoch, net)
+        list_loss.append(val_loss)
+        list_acc.append(acc)
     # Write out csv..
     with open(f'log/log_{args.net}_patch{args.patch}.csv', 'w') as f:
         writer = csv.writer(f, lineterminator='\n')
@@ -261,4 +264,3 @@ for epoch in range(start_epoch, args.n_epochs):
 # writeout wandb
 if usewandb:
     wandb.save("wandb_{}.h5".format(args.net))
-    
