@@ -11,7 +11,7 @@ We apply our proposed [DenoiseRep](../../denoiserep_op/) to [TransReID-SSL](http
 | **TransReID-SSL**         | 81.2%[(model)](https://drive.google.com/file/d/1imEaz1TiPECUddCgqRAgFKdZu1TpGiUO/view?usp=sharing)           | 66.3%[(model)](https://drive.google.com/file/d/1tptfrUg2mxKBwn3PLWU_JMBdbK3NfuQf/view?usp=sharing)                 | 91.2%[(model)](https://drive.google.com/file/d/1o4syrjVyUHRbO7Mgq-xZnjlfEVVufEcF/view?usp=sharing)           | 83.4%[(model)](https://drive.google.com/file/d/12x0pzDrg1GSy1mv-7m_cYnXJAJWHDcE0/view?usp=sharing)                |
 | **+_DenoiseRep_** | **82.1%[(model)](https://drive.google.com/file/d/1KKPzh4ABSkrS8n5uLHY9ypZMiO4NmqMo/view?usp=sharing)**    | **67.3%[(model)](https://drive.google.com/file/d/1ZSSylQTMg9zxHukVDBhZevIprybByuMl/view?usp=sharing)**             | **91.9%[(model)](https://drive.google.com/file/d/1-MvY3MWAgHvb_O4r1oDBUNTUnB4hIaFz/view?usp=sharing)**            | **84.6%[(model)](https://drive.google.com/file/d/1YU0ELebkzKpq8FfO7w0ydr4wZX3_66mg/view?usp=sharing)**             |
 
-If you want to train a baseline model yourself, you can refer to [TransReID-SSL](https://github.com/damo-cv/TransReID-SSL/).
+Models of TransReID-SSL can be obtained by running the official repo [TransReID-SSL](https://github.com/damo-cv/TransReID-SSL/).
 
 ## Requirements
 
