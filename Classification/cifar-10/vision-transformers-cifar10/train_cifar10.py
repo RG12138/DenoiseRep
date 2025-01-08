@@ -31,7 +31,7 @@ from models.vit import ViT
 
 # parsers
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--lr', default=1e-4, type=float, help='learning rate') # resnets.. 1e-3, Vit..1e-4
+parser.add_argument('--lr', default=1e-4, type=float, help='learning rate') 
 parser.add_argument('--opt', default="adam")
 parser.add_argument('--resume', '-r', action='store_true', help='resume from checkpoint')
 parser.add_argument('--noaug', action='store_false', help='disable use randomaug')
@@ -105,7 +105,6 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 # Model factory..
 print('==> Building model..')
-# net = VGG('VGG19')
 if args.net=="vit_small":
     from models.vit_small import ViT
     net = ViT(
@@ -116,19 +115,6 @@ if args.net=="vit_small":
     depth = 6,
     heads = 8,
     mlp_dim = 512,
-    dropout = 0.1,
-    emb_dropout = 0.1
-)
-elif args.net=="vit_tiny":
-    from models.vit_small import ViT
-    net = ViT(
-    image_size = size,
-    patch_size = args.patch,
-    num_classes = 10,
-    dim = int(args.dimhead),
-    depth = 4,
-    heads = 6,
-    mlp_dim = 256,
     dropout = 0.1,
     emb_dropout = 0.1
 )
