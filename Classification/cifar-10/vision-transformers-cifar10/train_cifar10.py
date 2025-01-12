@@ -45,6 +45,7 @@ parser.add_argument('--size', default="32")
 parser.add_argument('--n_epochs', type=int, default='300')
 parser.add_argument('--patch', default='4', type=int, help="patch for ViT")
 parser.add_argument('--dimhead', default="512", type=int)
+parser.add_argument('--eval_epochs', default="40", type=int)
 parser.add_argument('--convkernel', default='8', type=int, help="parameter for convmixer")
 
 args = parser.parse_args()
