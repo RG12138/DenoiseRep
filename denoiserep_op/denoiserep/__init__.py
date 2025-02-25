@@ -12,4 +12,4 @@ from .denoise_linear import (
     convert_denoise_linear,
     convert_vit_denoise_linear,
 )
-
+from .denoise_conv2d import DenoiseConv2d, count_conv2d_layers, convert_denoise_conv2d
