@@ -21,7 +21,7 @@ NeurIPS 2024 (Oral)
 
 - [x] release DenoiseRep basic code.
 - [x] implement `DenoiseLinear`.
-- [ ] implement `DenoiseConv2d`.
+- [x] implement `DenoiseConv2d`.
 - [x] a tutorial of cifar10.
 - [x] implement Person-ReID experiments.
 - [ ] implement Classification (ImageNet) experiments.
