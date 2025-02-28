@@ -111,8 +111,10 @@ class DenoiseLayer(nn.Module):
 
     def pred_noise(self, f, t):
         t = self.time_mlp(t)
-        if t.shape != f.shape:
+        if isinstance(self.dm, nn.Linear):
             t = t.unsqueeze(1).expand(-1, f.shape[1], -1)
+        if isinstance(self.dm, nn.Conv2d):
+            t = t.unsqueeze(-1).unsqueeze(-1).expand(-1, -1, f.shape[2], f.shape[3])
         x = f + t
         # 1x fc
         output = self.dm(x.detach())
