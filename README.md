@@ -24,8 +24,8 @@ NeurIPS 2024 (Oral)
 - [x] implement `DenoiseConv2d`.
 - [x] a tutorial of cifar10.
 - [x] implement Person-ReID experiments.
-- [ ] implement Classification (ImageNet) experiments.
-- [ ] implement Detection / Segmentation experiments.
+- [x] implement Classification (ImageNet) experiments.
+- [x] implement Detection / Segmentation experiments.
 
 ## Pipeline
 
