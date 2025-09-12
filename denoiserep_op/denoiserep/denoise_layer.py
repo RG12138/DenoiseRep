@@ -106,6 +106,14 @@ class DenoiseLayer(nn.Module):
             raise NotImplementedError(
                 "The specified loss type is not supported. Please choose from 'l1', 'l2', or 'l1 + l2'."
             )
+        
+        # --------- 蒸馏部分 ----------
+        if self.teacher is not None:
+            with torch.no_grad():
+                teacher_out = self.teacher(x_noisy)   # 教师预测
+            distill_loss = F.mse_loss(predicted_noise, teacher_out)
+            loss = loss + self.distill_alpha * distill_loss
+        # ----------------------------
 
         return x_noisy, loss
 

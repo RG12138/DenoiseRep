@@ -74,7 +74,7 @@ if __name__ == '__main__':
     model = make_model(cfg, num_class=num_classes, camera_num=camera_num, view_num = view_num)
     model.load_param("/pretrain_model_path")
     layer_num = count_vit_linear_layers(model) 
-    model = convert_vit_denoise_linear(model, layer_num)
+    model = convert_vit_denoise_linear(model, layer_num, teacher_type=None)
     model.to(device)  
     loss_func, center_criterion = make_loss(cfg, num_classes=num_classes) 
     optimizer, optimizer_center = make_optimizer(cfg, model, center_criterion) 
